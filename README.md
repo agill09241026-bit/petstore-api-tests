@@ -46,13 +46,28 @@ Petstore-API测试/
 **异常场景**：查询不存在宠物ID，验证接口正确返回404。
 
 ## 📊 运行结果
+一共执行 8 个接口，13 条测试断言，全部通过，错误数：0。
+
+### 接口断言截图
 
 | 场景 | 截图 |
 |------|------|
-| Collection Runner 总览 | ![runner_summary](screenshots/runner_summary.png) |
-| 用户模块断言 | ![user_assertions](screenshots/01_user_assertions.png) |
-| 宠物模块断言 | ![pet_assertions](screenshots/02_pet_assertions.png) |
-| 异常场景404 | ![error_404](screenshots/03_error_404.png) |
+| 整体集合预览 | ![01](screenshots/01_collection_overview.png) |
+| 新增宠物 | ![02](screenshots/02_post_addPet.png) |
+| 按ID查询宠物 | ![03](screenshots/03_get_queryPetById.png) |
+| 更新宠物 | ![04](screenshots/04_put_updatePet.png) |
+| 按状态查询宠物 | ![05](screenshots/05_get_findByStatus.png) |
+| 删除宠物 | ![06](screenshots/06_delete_pet.png) |
+| 用户登录 | ![07](screenshots/07_get_user_login.png) |
+| 删除用户 | ![08](screenshots/08_delete_user.png) |
+| 按用户名查询 | ![09](screenshots/09_get_user_byName.png) |
+| 更新用户 | ![10](screenshots/10_put_updateUser.png) |
+| 创建用户 | ![11](screenshots/11_post_createUser.png) |
+| 异常场景404 | ![12](screenshots/12-error-404.png) |
+
+### Collection Runner 批量运行总览
+
+![runner_summary](screenshots/runner_summary.png)
 
 ## 🚀 本地复现步骤
 1. 导入 `收藏/swagger_petstore_collection.json` 接口集合
