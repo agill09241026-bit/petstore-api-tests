@@ -1,0 +1,22 @@
+{
+	"id": "dea1e3ef-16b7-445e-88fd-b86573186d05",
+	"name": "petstore-env",
+	"values": [
+		{
+			"key": "baseUrl",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"color": null,
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2026-09-27T11:07:21.825Z",
+	"_postman_exported_using": "Postman/12.29.5-260925-2053"
+}
