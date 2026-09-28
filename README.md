@@ -52,7 +52,7 @@ Petstore-API测试/
 - 平均响应时间：约522ms
 - 异常场景验证：非法ID返回404
 
-![runner_summary](screenshots/runner_summary.png)
+> 批量运行报告截图存放在 screenshots/runner_summary.png
 
 ## 🚀 本地复现步骤
 1. 导入 `收藏/swagger_petstore_collection.json` 接口集合
