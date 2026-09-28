@@ -46,13 +46,13 @@ Petstore-API测试/
 **异常场景**：查询不存在宠物ID，验证接口正确返回404。
 
 ## 📊 运行结果
-- 执行接口：8个
-- 断言总数：25+条
-- 执行结果：全部用例通过，失败0
-- 平均响应时间：约522ms
-- 异常场景验证：非法ID返回404
 
-> 批量运行报告截图存放在 screenshots/runner_summary.png
+| 场景 | 截图 |
+|------|------|
+| Collection Runner 总览 | ![runner_summary](screenshots/runner_summary.png) |
+| 用户模块断言 | ![user_assertions](screenshots/01_user_assertions.png) |
+| 宠物模块断言 | ![pet_assertions](screenshots/02_pet_assertions.png) |
+| 异常场景404 | ![error_404](screenshots/03_error_404.png) |
 
 ## 🚀 本地复现步骤
 1. 导入 `收藏/swagger_petstore_collection.json` 接口集合
@@ -60,9 +60,13 @@ Petstore-API测试/
 3. 打开Collection Runner，选中8个接口，迭代次数=1
 4. 执行Run，查看测试报告和断言结果
 
-## 💡 项目亮点（面试重点背诵）
-1. **跨接口参数传递**：`pm.environment.set()` 提取返回值存入环境变量，实现业务链路串联
-2. **动态测试数据**：前置脚本利用时间戳生成唯一用户名，多次运行不会数据冲突
-3. **分层断言思路**：不只看状态码，同时校验响应头、json结构、业务数据，覆盖更全面
-4. **异常场景测试**：除正向流程，补充不存在ID这类边界场景，验证接口容错性
+## 💡 项目亮点
+1. **跨接口参数传递**：新增宠物接口通过 `pm.environment.set("savedPetId", ...)` 提取返回的 petId，后续查询、更新、删除接口通过 `{{savedPetId}}` 引用，实现完整的 CRUD 链路。
+2. **动态测试数据**：Pre-request Script 使用 `Date.now()` 生成唯一用户名，确保多次运行新增接口不会因用户名重复而失败。
+3. **四层断言体系**：以新增宠物接口为例——
+   - 第1层：`pm.response.to.have.status(200)`
+   - 第2层：`pm.response.to.have.header("Content-Type", "application/json")`
+   - 第3层：校验 `id` 为 number、`name` 为 string、`status` 为 available/pending/sold
+   - 第4层：`pm.expect(body.id).to.eql(pm.collectionVariables.get("petId"))`
+4. **异常场景覆盖**：测试不存在的宠物ID（999999999），验证接口返回 404，确认系统边界处理正确。
 ```
